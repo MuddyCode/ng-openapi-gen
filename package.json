@@ -1,6 +1,6 @@
 {
   "name": "ng-openapi-gen",
-  "version": "0.53.0",
+  "version": "0.53.0-1",
   "license": "MIT",
   "author": "Cyclos development team",
   "description": "An OpenAPI 3 codegen for Angular 12+",
@@ -11,9 +11,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cyclosproject/ng-openapi-gen.git"
+    "url": "git@github.com:MuddyCode/ng-openapi-gen.git"
   },
-  "private": true,
+  "private": false,
   "bin": {
     "ng-openapi-gen": "lib/index.js"
   },
