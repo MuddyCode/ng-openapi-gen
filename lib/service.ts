@@ -53,7 +53,7 @@ export class Service extends GenType {
     }
     this.updateImports();
 
-    this.serviceImplements = this.generateImplements(operations);
+    this.generateImplements(operations);
   }
 
   protected skipImport(): boolean {
@@ -64,7 +64,7 @@ export class Service extends GenType {
     return '../';
   }
 
-  protected generateImplements(operations: Operation[]): string {
+  protected generateImplements(operations: Operation[]): void {
     const crudInterfaces: BaseCrudInterfaceImpl[] = [];
 
     operations.forEach(op => {
@@ -76,9 +76,9 @@ export class Service extends GenType {
     });
 
     if (crudInterfaces.length > 0) {
-      return 'implements ' + crudInterfaces.map(ci => ci.serviceInterface).join(', ');
+      this.serviceImplements =  ' implements ' + crudInterfaces.filter(ci => ci.isLeading).map(ci => ci.serviceIntfParametrized).join(', ');
     } else {
-      return '';
+      this.serviceImplements = '';
     }
   }
 }

@@ -11,11 +11,13 @@ import { {{baseServiceClass}} } from '../{{baseServiceFile}}';
 import { {{configurationClass}} } from '../{{configurationFile}}';
 import { {{responseClass}} } from '../{{responseFile}}';
 
+import { BaseDtoCrudService } from '../../../../base/src';
+
 {{#imports}}import { {{{typeName}}}{{#useAlias}} as {{{qualifiedName}}}{{/useAlias}} } from '{{{@root.pathToRoot}}}{{{fullPath}}}';
 {{/imports}}
 
 {{{tsComments}}}@Injectable({ providedIn: 'root' })
-export class {{typeName}} extends {{baseServiceClass}} {{{serviceImplements}}} {
+export class {{typeName}} extends {{baseServiceClass}}{{{serviceImplements}}} {
   constructor(config: {{configurationClass}}, http: HttpClient) {
     super(config, http);
   }
