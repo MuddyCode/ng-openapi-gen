@@ -15,13 +15,13 @@ import { {{responseClass}} } from '../{{responseFile}}';
 {{/imports}}
 
 {{{tsComments}}}@Injectable({ providedIn: 'root' })
-export class {{typeName}} extends {{baseServiceClass}} {
+export class {{typeName}} extends {{baseServiceClass}} {{{serviceImplements}}} {
   constructor(config: {{configurationClass}}, http: HttpClient) {
     super(config, http);
   }
 
 {{#operations}}
 {{>operationPath}}
-{{#variants}}{{>operationResponse}}{{>operationBody}}{{/variants}}
+{{#variants}}{{>operationResponse}}{{>operationBody}}{{#baseInterface}}{{#isCrud}}{{>baseIntfImpl}}{{/isCrud}}{{/baseInterface}}{{/variants}}
 {{/operations}}
 }
