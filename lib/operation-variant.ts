@@ -6,6 +6,7 @@ import { ensureNotReserved, fileName, resolveRef, tsComments } from './gen-utils
 import { Importable } from './importable';
 import { Operation } from './operation';
 import { Options } from './options';
+import { BaseCrudInterfaceImpl } from './baseCrudInterfaceImpl';
 
 /**
  * An operation has a variant per distinct possible body content
@@ -28,6 +29,8 @@ export class OperationVariant extends GenType implements Importable {
   importName: string;
   importPath: string;
   importFile: string;
+
+  baseInterface: BaseCrudInterfaceImpl;
 
   constructor(
     public operation: Operation,
@@ -77,6 +80,8 @@ export class OperationVariant extends GenType implements Importable {
 
     // Finally, update the imports
     this.updateImports();
+
+    this.baseInterface = new BaseCrudInterfaceImpl(operation, this.resultType, this.methodName, this.paramsType);
   }
 
   private inferResponseType(successResponse: Content, operation: Operation, { customizedResponseType = {} }: Pick<Options, 'customizedResponseType'>): string {

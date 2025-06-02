@@ -3,11 +3,14 @@ import { GenType } from './gen-type';
 import { serviceClass, tsComments } from './gen-utils';
 import { Operation } from './operation';
 import { Options } from './options';
+import { BaseCrudInterfaceImpl } from './baseCrudInterfaceImpl';
 
 /**
  * Context to generate a service
  */
 export class Service extends GenType {
+
+  serviceImplements: string;
 
   constructor(tag: TagObject, public operations: Operation[], options: Options) {
     super(tag.name, serviceClass, options);
@@ -49,6 +52,8 @@ export class Service extends GenType {
       }
     }
     this.updateImports();
+
+    this.generateImplements(operations);
   }
 
   protected skipImport(): boolean {
@@ -57,5 +62,23 @@ export class Service extends GenType {
 
   protected initPathToRoot(): string {
     return '../';
+  }
+
+  protected generateImplements(operations: Operation[]): void {
+    const crudInterfaces: BaseCrudInterfaceImpl[] = [];
+
+    operations.forEach(op => {
+      op.variants.forEach(variant => {
+        if (variant.baseInterface.isCrud) {
+          crudInterfaces.push(variant.baseInterface);
+        }
+      });
+    });
+
+    if (crudInterfaces.length > 0) {
+      this.serviceImplements =  ' implements ' + crudInterfaces.filter(ci => ci.isLeading).map(ci => ci.serviceIntfParametrized).join(', ');
+    } else {
+      this.serviceImplements = '';
+    }
   }
 }
