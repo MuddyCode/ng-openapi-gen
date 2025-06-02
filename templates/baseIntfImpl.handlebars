@@ -1,4 +1,4 @@
 
-  {{intfFunctionName}}({{>operationParameters}}): {{{serviceInterface}}} {
+  {{intfFunctionName}}({{>operationParameters}}): Observable<{{{resultType}}}> {
       return this.{{methodName}}(params, context);
   }
