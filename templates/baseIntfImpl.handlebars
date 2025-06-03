@@ -1,4 +1,4 @@
 
   {{intfFunctionName}}({{>operationParameters}}): Observable<{{{functionResultType}}}> {
-      return this.{{methodName}}(params, context);
+      return this.{{methodName}}(params{{#castParams}} as {{{paramsType}}}{{/castParams}}, context);
   }

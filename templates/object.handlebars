@@ -1,4 +1,6 @@
-export interface {{typeName}} {
+{{#isCreateRequestObject}}import { BaseDtoCreateRequest } from '../../../../base/src';{{/isCreateRequestObject}}
+
+export interface {{typeName}}{{#isCreateRequestObject}} extends BaseDtoCreateRequest{{/isCreateRequestObject}} {
 {{#properties}}
 {{{tsComments}}}{{{identifier}}}{{^required}}?{{/required}}: {{{type}}};
 {{/properties}}

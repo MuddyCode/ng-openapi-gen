@@ -5,6 +5,7 @@ export class BaseCrudInterfaceImpl {
   serviceIntf: string = 'BaseDtoCrudService';
   serviceIntfParametrized: string;
   intfFunctionName: string;
+  castParams: boolean;
   isCrud: boolean;
 
   methodName: string;
@@ -21,6 +22,7 @@ export class BaseCrudInterfaceImpl {
     switch (operation.spec.description) {
       case 'baseCreate':
         this.intfFunctionName = 'create';
+        this.castParams = true;
         this.isLeading = true;
         break;
       case 'baseUpdate':
@@ -28,9 +30,6 @@ export class BaseCrudInterfaceImpl {
         break;
       case 'baseDeleteById':
         this.intfFunctionName = 'delete';
-        break;
-      case 'baseGetAll':
-        this.intfFunctionName = 'getAll';
         break;
       case 'baseGetById':
         this.intfFunctionName = 'getById';
