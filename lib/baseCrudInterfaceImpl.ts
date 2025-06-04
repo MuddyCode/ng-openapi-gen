@@ -7,6 +7,8 @@ export class BaseCrudInterfaceImpl {
   intfFunctionName: string;
   castParams: boolean;
   isCrud: boolean;
+  isCreate: boolean;
+  isUpdate: boolean;
 
   methodName: string;
   paramsType: string;
@@ -24,10 +26,12 @@ export class BaseCrudInterfaceImpl {
         this.intfFunctionName = 'create';
         this.castParams = true;
         this.isLeading = true;
+        this.isCreate = true;
         break;
       case 'baseUpdate':
         this.intfFunctionName = 'update';
         this.castParams = true;
+        this.isUpdate = true;
         break;
       case 'baseDeleteById':
         this.intfFunctionName = 'delete';
