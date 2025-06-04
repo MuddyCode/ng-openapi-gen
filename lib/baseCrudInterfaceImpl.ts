@@ -27,6 +27,7 @@ export class BaseCrudInterfaceImpl {
         break;
       case 'baseUpdate':
         this.intfFunctionName = 'update';
+        this.castParams = true;
         break;
       case 'baseDeleteById':
         this.intfFunctionName = 'delete';

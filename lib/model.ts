@@ -19,6 +19,7 @@ export class Model extends GenType {
   isEnum: boolean;
   isObject: boolean;
   isCreateRequestObject: boolean;
+  isUpdateRequestObject: boolean;
 
   // Simple properties
   simpleType: string;
@@ -91,6 +92,7 @@ export class Model extends GenType {
     const hasOneOf = schema.oneOf && schema.oneOf.length > 0;
     this.isObject = (type === 'object' || !!schema.properties) && !schema.nullable && !hasAllOf && !hasOneOf;
     this.isCreateRequestObject = this.isObject && modelName.startsWith('Create');
+    this.isUpdateRequestObject = this.isObject && modelName.startsWith('Update');
     this.isSimple = !this.isObject && !this.isEnumRef && !this.isEnum;
 
     if (this.isObject) {
