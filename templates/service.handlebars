@@ -11,8 +11,7 @@ import { {{baseServiceClass}} } from '../{{baseServiceFile}}';
 import { {{configurationClass}} } from '../{{configurationFile}}';
 import { {{responseClass}} } from '../{{responseFile}}';
 
-import { BaseDtoCrudService } from '../../../../base/src';
-import { BaseDtoCreateRequest } from '../../../../base/src';
+import { BaseDtoCreateRequest, BaseDtoUpdateRequest, BaseDtoCrudService } from '../../../../base/src';
 
 {{#imports}}import { {{{typeName}}}{{#useAlias}} as {{{qualifiedName}}}{{/useAlias}} } from '{{{@root.pathToRoot}}}{{{fullPath}}}';
 {{/imports}}

@@ -39,8 +39,8 @@ export class BaseCrudInterfaceImpl {
       case 'baseGetById':
         this.intfFunctionName = 'getById';
         break;
-      case 'baseGetByPage':
-        this.intfFunctionName = 'getByPage';
+      case 'baseGetByPageExtended':
+        this.intfFunctionName = 'getByPageExtended';
         break;
       case 'baseGetBySpecPageExtended':
         this.intfFunctionName = 'getBySpecPageExtended';

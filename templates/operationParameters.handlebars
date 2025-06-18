@@ -1,1 +1,1 @@
-params{{^operation.parametersRequired}}?{{/operation.parametersRequired}}: {{#castParams}}{{#if isCreate}}BaseDtoCreateRequest{{else if isUpdate}}BaseDtoUpdateRequest{{else}}{{paramsType}}{{/if}}{{/castParams}}, context?: HttpContext
+params{{^operation.parametersRequired}}?{{/operation.parametersRequired}}: {{#if castParams}}{{#if isCreate}}BaseDtoCreateRequest<{{{rawDtoType}}}>{{else if isUpdate}}BaseDtoUpdateRequest<{{{rawDtoType}}}>{{/if}}{{else}}{{paramsType}}{{/if}}, context?: HttpContext

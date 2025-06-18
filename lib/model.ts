@@ -20,6 +20,9 @@ export class Model extends GenType {
   isObject: boolean;
   isCreateRequestObject: boolean;
   isUpdateRequestObject: boolean;
+  interfaceName: string;
+  interfaceDtoName: string;
+  isInterfaceParametrized: boolean;
 
   // Simple properties
   simpleType: string;
@@ -94,6 +97,29 @@ export class Model extends GenType {
     this.isCreateRequestObject = this.isObject && modelName.startsWith('Create');
     this.isUpdateRequestObject = this.isObject && modelName.startsWith('Update');
     this.isSimple = !this.isObject && !this.isEnumRef && !this.isEnum;
+
+    if (this.isCreateRequestObject || this.isUpdateRequestObject) {
+      this.interfaceDtoName = modelName
+        .replace('Create', '')
+        .replace('Update', '')
+        .replace('Request', '')
+            + 'Dto';
+
+      if (this.isCreateRequestObject) {
+        this.interfaceName = 'BaseDtoCreateRequest';
+      }
+
+      if (this.isUpdateRequestObject) {
+        this.interfaceName = 'BaseDtoUpdateRequest';
+      }
+
+      // If DTO exists add parametrized
+      if (!(this.openApi.components?.schemas) || this.openApi.components?.schemas[this.interfaceDtoName.replace('Dto', 'DTO')]) {
+        this.isInterfaceParametrized = true;
+        this.interfaceName += '<' + this.interfaceDtoName + '>';
+      }
+
+    }
 
     if (this.isObject) {
       // Object
