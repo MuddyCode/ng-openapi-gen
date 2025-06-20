@@ -1,4 +1,5 @@
-{{#isCreateRequestObject}}import { BaseDtoCreateRequest{{#isUpdateRequestObject}}, BaseDtoUpdateRequest{{/isUpdateRequestObject}} } from '../../../../base/src';{{/isCreateRequestObject}}
+{{#isUpdateRequestObject}}import { BaseDtoUpdateRequest } from '../../../../base/src';{{/isUpdateRequestObject}}
+{{#isCreateRequestObject}}import { BaseDtoCreateRequest } from '../../../../base/src';{{/isCreateRequestObject}}
 {{#isInterfaceParametrized}}import { {{ interfaceDtoName }} } from '../../../src';{{/isInterfaceParametrized}}
 
 export interface {{typeName}}{{#if isCreateRequestObject}} extends {{{ interfaceName }}}{{else if isUpdateRequestObject}} extends {{{ interfaceName }}}{{/if}} {
