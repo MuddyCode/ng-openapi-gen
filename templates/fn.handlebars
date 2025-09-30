@@ -32,15 +32,17 @@ export function {{importName}}(http: HttpClient, rootUrl: string, params{{^opera
 {{/requestBody}}
   }
 
+  const request = rb.build({ responseType: '{{{responseType}}}', accept: '{{{accept}}}', context });
+
   return http.request(
-    rb.build({ responseType: '{{{responseType}}}', accept: '{{{accept}}}', context })
+    request
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
       {{> handleResponse}}
     }),
     catchError(error => {
-        return throwError(() => new BaseAPIException(error));
+        return throwError(() => new BaseAPIException(request, error));
     })
   );
 }
