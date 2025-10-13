@@ -42,7 +42,7 @@ export function {{importName}}(http: HttpClient, rootUrl: string, params{{^opera
       {{> handleResponse}}
     }),
     catchError(error => {
-        return throwError(() => new BaseAPIException(request, error));
+        return throwError(() => new BaseAPIException(error));
     })
   );
 }
